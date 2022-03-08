@@ -1,3 +1,4 @@
+from pip._internal.cli.cmdoptions import list_exclude
 from rest_framework import serializers
 
 from drones.models import Drone
@@ -24,3 +25,7 @@ class DroneCheckSerializer(serializers.ModelSerializer):
         fields = ('loaded_medications',)
 
 
+class DroneAvailableSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Drone
+        exclude = ('created', 'updated')
