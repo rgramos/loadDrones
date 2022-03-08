@@ -12,7 +12,7 @@ def validate_weight_limiter(value):
 
 def validate_battery_capacity(value):
     if value > 100:
-        raise ValidationError(_(f'{value} is to much weight, 100 gr is the maximum load'))
+        raise ValidationError(_(f'{value} is to much battery, 100 is the maximum value'))
 
 
 class Drone(AbsSlugTimestamp):
@@ -46,7 +46,7 @@ class Drone(AbsSlugTimestamp):
     weight_limiter = models.FloatField(validators=[validate_weight_limiter])
     battery_capacity = models.IntegerField(validators=[validate_battery_capacity])
     model = models.CharField(max_length=255, choices=MODEL_CHOICE)
-    state = models.CharField(max_length=255, choices=STATE_CHOICE)
+    state = models.CharField(max_length=255, choices=STATE_CHOICE, default=IDLE)
 
     class Meta:
         db_table = 'drone'
