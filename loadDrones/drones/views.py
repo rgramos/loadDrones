@@ -1,10 +1,10 @@
-from django.db.migrations import state
 from rest_framework.generics import CreateAPIView, RetrieveAPIView, get_object_or_404, ListAPIView
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
 from drones.models import Drone
-from drones.serializers import DroneSerializer, DroneCheckSerializer, DroneAvailableSerializer
+from drones.serializers import DroneSerializer, DroneCheckSerializer, DroneAvailableSerializer, \
+    DroneBatteryLevelSerializer
 
 
 class RegisterDroneViewSet(GenericViewSet, CreateAPIView):
@@ -31,5 +31,7 @@ class CheckAvailableDrones(GenericViewSet, ListAPIView):
         return queryset.filter(state=Drone.IDLE)
 
 
-
+class CheckDroneBatteryLevel(GenericViewSet, RetrieveAPIView):
+    queryset = Drone.objects.all()
+    serializer_class = DroneBatteryLevelSerializer
 
