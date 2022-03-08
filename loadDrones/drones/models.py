@@ -10,6 +10,11 @@ def validate_weight_limiter(value):
         raise ValidationError(_(f'{value} is to much weight, 500 gr is the maximum load'))
 
 
+def validate_battery_capacity(value):
+    if value > 100:
+        raise ValidationError(_(f'{value} is to much weight, 100 gr is the maximum load'))
+
+
 class Drone(AbsSlugTimestamp):
     LIGHTWEIGHT = 'Lightweight'
     MIDDLEWEIGHT = 'Middleweight'
@@ -39,7 +44,7 @@ class Drone(AbsSlugTimestamp):
 
     serial_number = models.CharField(max_length=100)
     weight_limiter = models.FloatField(validators=[validate_weight_limiter])
-    battery_capacity = models.IntegerField()
+    battery_capacity = models.IntegerField(validators=[validate_battery_capacity])
     model = models.CharField(max_length=255, choices=MODEL_CHOICE)
     state = models.CharField(max_length=255, choices=STATE_CHOICE)
 
