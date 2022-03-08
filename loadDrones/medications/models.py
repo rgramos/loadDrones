@@ -22,10 +22,10 @@ class Medication(AbsSlugTimestamp):
     weight = models.FloatField()
     code = models.CharField(validators=[validation_code], max_length=250)
     image = models.ImageField()
-    load = models.ManyToManyField(Drone, through='LoadMedicationDrone')
+    load = models.ManyToManyField(Drone, through='LoadMedicationDrone', blank=True, null=True)
 
 
 class LoadMedicationDrone(AbsSlugTimestamp):
     medication = models.ForeignKey(Medication, verbose_name=_('Medication'), on_delete=models.CASCADE)
     drone = models.ForeignKey(Drone, verbose_name=_('Drone'), on_delete=models.CASCADE)
-    delivered_medication = models.DateTimeField(verbose_name=_('Initial Date'), editable=True)
+    delivered_medication = models.DateTimeField(verbose_name=_('Initial Date'), editable=True, blank=True, null=True)
