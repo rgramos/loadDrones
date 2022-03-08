@@ -1,6 +1,13 @@
 from django.db import models
+from rest_framework.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 from loadDrones.models import AbsSlugTimestamp
+
+
+def validate_weight_limiter(value):
+    if value > 500:
+        raise ValidationError(_(f'{value} is to much weight, 500 gr is the maximum load'))
 
 
 class Drone(AbsSlugTimestamp):
@@ -31,7 +38,7 @@ class Drone(AbsSlugTimestamp):
     ]
 
     serial_number = models.CharField(max_length=100)
-    weight_limiter = models.FloatField()
+    weight_limiter = models.FloatField(validators=[validate_weight_limiter])
     battery_capacity = models.IntegerField()
     model = models.CharField(max_length=255, choices=MODEL_CHOICE)
     state = models.CharField(max_length=255, choices=STATE_CHOICE)
