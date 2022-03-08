@@ -21,5 +21,6 @@ class DroneCheckSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Drone
-        exclude = ('created', 'updated')
+        fields = ('loaded_medications',)
+
 
