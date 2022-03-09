@@ -1,6 +1,6 @@
 from drones.views import RegisterDroneViewSet, CheckLoadedMedicationsItemViewSet, CheckAvailableDronesViewSet, \
     CheckDroneBatteryLevelViewSet, LoadingDroneViewSet
-from loadDrones.urls import routers
+from load_drones.urls import routers
 
 app_name = 'drones'
 

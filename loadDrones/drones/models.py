@@ -2,7 +2,7 @@ from django.db import models
 from rest_framework.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from loadDrones.models import AbsSlugTimestamp
+from load_drones.models import AbsSlugTimestamp
 
 
 def validate_weight_limiter(value):
@@ -58,3 +58,15 @@ class Drone(AbsSlugTimestamp):
 
     def get_medication(self):
         return self.medication_set.filter(loadmedicationdrone__delivered_medication=None)
+
+
+class BatteryHistoryLevel(models.Model):
+    drone = models.ForeignKey(Drone, verbose_name='drone', on_delete=models.CASCADE)
+    battery_capacity = models.IntegerField(_("Battery capacity"), default=100)
+    date = models.DateTimeField(_("Date"), auto_now_add=True)
+
+    class Meta:
+        db_table = "tbl_history_battery_level"
+        verbose_name = "BatteryHistoryLevel"
+        verbose_name_plural = "BatteryHistoryLevel"
+

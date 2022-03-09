@@ -4,7 +4,7 @@ from rest_framework.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
 from drones.models import Drone
-from loadDrones.models import AbsSlugTimestamp
+from load_drones.models import AbsSlugTimestamp
 
 
 def validation_name(value):
