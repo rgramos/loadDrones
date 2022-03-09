@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "cabb9bf1-3131-45c8-9bb8-54a6175face3",
+		"name": "medicalDrones",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register drone",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "serial_number",
+							"value": "Test Drone",
+							"type": "text"
+						},
+						{
+							"key": "weight_limiter",
+							"value": "300",
+							"description": "max value 500",
+							"type": "text"
+						},
+						{
+							"key": "battery_capacity",
+							"value": "100",
+							"description": "max value 100",
+							"type": "text"
+						},
+						{
+							"key": "model",
+							"value": "Heavyweight",
+							"description": "Lightweight | Middleweight | Cruiserweight | Heavyweight",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local}}/drones/register/",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"drones",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "load medication drone",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"medications\": [\n\t\t\"<medication_id>\", \"<medication_id>\"\n\t\t],\n\t\"drone\": \"<drone_id>\"\n}"
+				},
+				"url": {
+					"raw": "{{local}}/drones/load-medication-drone/",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"drones",
+						"load-medication-drone",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check loaded drone",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{local}}/drones/check-loaded-drone/<drone_id>/",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"drones",
+						"check-loaded-drone",
+						"<drone_id>",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check drone battery level",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{local}}/drones/check-drone-battery/<drone_id>/",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"drones",
+						"check-drone-battery",
+						"<drone_id>",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "check loaded drone Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{local}}/drones/check-available-drones",
+					"host": [
+						"{{local}}"
+					],
+					"path": [
+						"drones",
+						"check-available-drones"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "87d1383b-fabc-4db4-8728-408c4b0aeb16",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "06bd2bc9-5ba8-4fd6-a8ec-6bef8d953482",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "ab68980b-eae5-449f-a30a-b5f76b657966",
+			"key": "local",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
