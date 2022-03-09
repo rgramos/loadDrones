@@ -30,6 +30,8 @@ Previous requirements
 
 5. Test
 - Located in directory loadDrones/postman_collection_api_examples are a postman collection file. This collection can be loaded in to postman app or web to do api tests. In this collection are one api example for each endpoint. 
+- For unit tests run command:
+> python manage.py test
 
 
 #Run server
