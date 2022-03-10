@@ -1,17 +1,29 @@
 # load_drones
 
+System Requirements
+-
+- python >= 3.9
+- Redis >= 3.0
+
 Previous requirements
+-
 - $ git clone https://github.com/rgramos/loadDrones.git
 
+#BUILD
 #1. Install Requirements
  - Locate into directory loadDrones
  - Run command:
 >pip install -r requirements.txt
 
-#2. Migrate
+#2. Migrate and Database
 - Locate into directory loadDrones/loadDrones
 - Run command:
 >python manage.py migrate
+
+````
+NOTE:
+The database used is sqlite. The project database will be created automaticly in project root.
+````
 
 #3. Load Required Data
 - Locate into directory loadDrones/loadDrones
@@ -28,16 +40,19 @@ Previous requirements
 - in terminal 2 run command:
 >celery -A load_drones beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
 
-5. Test
-- Located in directory loadDrones/postman_collection_api_examples are a postman collection file. This collection can be loaded in to postman app or web to do api tests. In this collection are one api example for each endpoint. 
+#Run server
+> python manage.py runserver
+
+#Tests
+````
+Located in directory loadDrones/postman_collection_api_examples are a postman collection file. 
+This collection can be loaded in to postman app or web to do api tests. In this collection are one api example for each endpoint.
+```` 
 - For unit tests run command:
 > python manage.py test
 
 
-#Run server
-> python manage.py runserver
-
-#Api Endpoints
+#Api Endpoints Examples
 Note: Var {{server_host}} is url from server. Ex. http://127.0.0.1:8000
 - Register Drone
 ````
